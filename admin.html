@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannello Admin - Smartfix</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Esterno -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .admin-table th, .admin-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 0.9rem;
+        }
+        .admin-table th {
+            background: #f1f1f1;
+            color: var(--primary-color);
+        }
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="home.html" class="logo-container">
+            <h1>SMARTFIX <span style="font-size: 0.8rem; color: var(--accent-color); font-weight: 600;">[ADMIN]</span></h1>
+        </a>
+        <nav>
+            <a href="home.html">Torna al Sito</a>
+        </nav>
+    </header>
+
+    <div style="padding-top: 130px; min-height: 80vh; max-width: 1000px; margin: 0 auto; padding-left: 20px; padding-right: 20px;">
+        
+        <!-- SCHERMATA LOGIN ADMIN -->
+        <div id="loginSection" class="admin-card" style="max-width: 450px; margin: 50px auto; text-align: center;">
+            <i class="fas fa-user-shield" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+            <h2 style="margin-bottom: 15px; color: var(--primary-color);">Accesso Riservato Admin</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Inserisci la password di amministrazione per accedere al pannello di controllo.</p>
+            
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <input type="password" id="adminPassword" placeholder="Inserisci Password Admin" required>
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%; border: none; cursor: pointer;">Accedi al Pannello</button>
+            </form>
+            <p id="loginError" style="color: #e74c3c; margin-top: 15px; font-size: 0.85rem; display: none;">Password errata. Riprova.</p>
+        </div>
+
+        <!-- PANNELLO DI GESTIONE (NASCOSTO FINO ALL'AUTENTICAZIONE) -->
+        <div id="dashboardSection" style="display: none;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2>Pannello di Controllo Smartfix</h2>
+                <button onclick="logoutAdmin()" class="btn-login" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i> Disconnetti</button>
+            </div>
+
+            <!-- SEZIONE 1: AGGIUNGI NUOVO PRODOTTO -->
+            <div class="admin-card">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);"><i class="fas fa-plus-circle"></i> Aggiungi Nuovo iPhone in Vendita</h3>
+                <form id="addProductForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>Titolo Prodotto / Modello</label>
+                            <input type="text" id="prodTitle" placeholder="Es. iPhone 13 128GB - Verde" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Prezzo (€)</label>
+                            <input type="text" id="prodPrice" placeholder="Es. 420.00" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>Stato Dispositivo</label>
+                            <select id="prodCondition">
+                                <option value="Pari al Nuovo">Pari al Nuovo</option>
+                                <option value="Ottimo Stato">Ottimo Stato</option>
+                                <option value="Buono Stato">Buono Stato</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome file Immagine (in cartella img/)</label>
+                            <input type="text" id="prodImage" placeholder="Es. iphone13-verde.jpg" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Link Inserzione Vinted</label>
+                        <input type="url" id="prodVintedUrl" placeholder="https://www.vinted.it/..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrizione Dettagliata</label>
+                        <textarea id="prodDescription" rows="3" placeholder="Batteria al 92%, nessun graffio..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-register" style="border: none; cursor: pointer; padding: 10px 20px;"><i class="fas fa-save"></i> Salva Prodotto</button>
+                </form>
+            </div>
+
+            <!-- SEZIONE 2: TABELLA PRODOTTI SALVATI -->
+            <div class="admin-card">
+                <h3 style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-mobile-alt"></i> Prodotti in Catalogo</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Immagine</th>
+                            <th>Titolo</th>
+                            <th>Prezzo</th>
+                            <th>Stato</th>
+                            <th>Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Popolato dinamicamente da JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SEZIONE 3: GESTIONE RECENSIONI -->
+            <div class="admin-card">
+                <h3 style="margin-bottom: 20px; color: var(--primary-color);"><i class="fas fa-star"></i> Aggiungi Nuova Recensione</h3>
+                <form id="addReviewForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>Nome Cliente</label>
+                            <input type="text" id="revAuthor" placeholder="Es. Marco R." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Valutazione (Stelle)</label>
+                            <select id="revStars">
+                                <option value="5">5 Stelle</option>
+                                <option value="4">4 Stelle</option>
+                                <option value="3">3 Stelle</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Testo Recensione</label>
+                        <textarea id="revText" rows="2" placeholder="Scrivi il testo della recensione..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-register" style="border: none; cursor: pointer; padding: 10px 20px;"><i class="fas fa-save"></i> Salva Recensione</button>
+                </form>
+
+                <h4 style="margin-top: 30px; margin-bottom: 15px; color: var(--primary-color);">Recensioni Pubblicate</h4>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Autore</th>
+                            <th>Valutazione</th>
+                            <th>Testo</th>
+                            <th>Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reviewsTableBody">
+                        <!-- Popolato dinamicamente da JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT JAVASCRIPT PER LA SICUREZZA E LA GESTIONE DEI DATI -->
+    <script>
+        // Password Admin predefinita (Modificabile dall'Admin)
+        const ADMIN_PASSWORD = "smartfixadmin"; 
+
+        // Funzione per prevenire attacchi XSS (Sanitizzazione Input)
+        function sanitizeInput(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
+        // Verifica Stato Login al caricamento
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('smartfix_admin_logged') === 'true') {
+                showDashboard();
+            }
+        });
+
+        // Gestione Login Admin
+        document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const passwordInput = document.getElementById('adminPassword').value;
+            
+            if (passwordInput === ADMIN_PASSWORD) {
+                sessionStorage.setItem('smartfix_admin_logged', 'true');
+                showDashboard();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        function showDashboard() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
+            loadProducts();
+            loadReviews();
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('smartfix_admin_logged');
+            location.reload();
+        }
+
+        /* --- GESTIONE DATABASE LOCALE PRODOTTI --- */
+        function getProducts() {
+            return JSON.parse(localStorage.getItem('smartfix_products') || '[]');
+        }
+
+        function saveProducts(products) {
+            localStorage.setItem('smartfix_products', JSON.stringify(products));
+        }
+
+        document.getElementById('addProductForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newProduct = {
+                id: Date.now(),
+                title: sanitizeInput(document.getElementById('prodTitle').value),
+                price: sanitizeInput(document.getElementById('prodPrice').value),
+                condition: sanitizeInput(document.getElementById('prodCondition').value),
+                image: sanitizeInput(document.getElementById('prodImage').value),
+                vintedUrl: sanitizeInput(document.getElementById('prodVintedUrl').value),
+                description: sanitizeInput(document.getElementById('prodDescription').value)
+            };
+
+            const products = getProducts();
+            products.push(newProduct);
+            saveProducts(products);
+
+            document.getElementById('addProductForm').reset();
+            loadProducts();
+            alert('Prodotto salvato con successo!');
+        });
+
+        function loadProducts() {
+            const products = getProducts();
+            const tbody = document.getElementById('productsTableBody');
+            tbody.innerHTML = '';
+
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">Nessun prodotto personalizzato salvato.</td></tr>';
+                return;
+            }
+
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="img/${p.image}" alt="${p.title}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;"></td>
+                    <td><strong>${p.title}</strong></td>
+                    <td>€ ${p.price}</td>
+                    <td>${p.condition}</td>
+                    <td><button onclick="deleteProduct(${p.id})" class="btn-delete"><i class="fas fa-trash"></i> Elimina</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
+                let products = getProducts();
+                products = products.filter(p => p.id !== id);
+                saveProducts(products);
+                loadProducts();
+            }
+        }
+
+        /* --- GESTIONE DATABASE LOCALE RECENSIONI --- */
+        function getReviews() {
+            return JSON.parse(localStorage.getItem('smartfix_reviews') || '[]');
+        }
+
+        function saveReviews(reviews) {
+            localStorage.setItem('smartfix_reviews', JSON.stringify(reviews));
+        }
+
+        document.getElementById('addReviewForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const newReview = {
+                id: Date.now(),
+                author: sanitizeInput(document.getElementById('revAuthor').value),
+                stars: parseInt(document.getElementById('revStars').value),
+                text: sanitizeInput(document.getElementById('revText').value)
+            };
+
+            const reviews = getReviews();
+            reviews.push(newReview);
+            saveReviews(reviews);
+
+            document.getElementById('addReviewForm').reset();
+            loadReviews();
+            alert('Recensione salvata con successo!');
+        });
+
+        function loadReviews() {
+            const reviews = getReviews();
+            const tbody = document.getElementById('reviewsTableBody');
+            tbody.innerHTML = '';
+
+            if (reviews.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#888;">Nessuna recensione personalizzata salvata.</td></tr>';
+                return;
+            }
+
+            reviews.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${r.author}</strong></td>
+                    <td>${'★'.repeat(r.stars)}</td>
+                    <td>${r.text}</td>
+                    <td><button onclick="deleteReview(${r.id})" class="btn-delete"><i class="fas fa-trash"></i> Elimina</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteReview(id) {
+            if (confirm('Sei sicuro di voler eliminare questa recensione?')) {
+                let reviews = getReviews();
+                reviews = reviews.filter(r => r.id !== id);
+                saveReviews(reviews);
+                loadReviews();
+            }
+        }
+    </script>
+</body>
+</html>

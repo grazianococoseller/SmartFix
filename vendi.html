@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendi il tuo iPhone - Smartfix</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Esterno -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="home.html" class="logo-container">
+            <h1>SMARTFIX</h1>
+        </a>
+        <nav>
+            <a href="acquista.html">Acquista</a>
+            <a href="home.html#chisiamo">Chi siamo</a>
+            <a href="home.html#recensioni">Recensioni</a>
+            <a href="home.html#aiuto">Aiuto</a>
+            <a href="vendi.html" style="color: var(--accent-color); font-weight: 600;">Vendi il tuo iPhone</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn-login">Accedi</a>
+            <a href="register.html" class="btn-register">Registrati</a>
+        </div>
+    </header>
+
+    <!-- INTRO SEZIONE VENDI -->
+    <section class="hero" style="min-height: 40vh; padding-top: 130px; padding-bottom: 40px; text-align: center;">
+        <div class="hero-content" style="max-width: 800px; margin: 0 auto;">
+            <h2>Vuoi vendere il tuo iPhone?</h2>
+            <p>Valutiamo il tuo usato ad Acireale in modo rapido e trasparente. Compila i dettagli del tuo dispositivo o contattaci subito direttamente per ricevere un'offerta immediata.</p>
+        </div>
+    </section>
+
+    <!-- SEZIONE FORM E CONTATTI DIRETTI -->
+    <section style="padding-top: 20px;">
+        <div style="max-width: 700px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 20px;">Inviaci i dati del tuo dispositivo</h3>
+            <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 0.95rem;">Compila il modulo rapido oppure usa i contatti diretti sottostanti per parlarne subito con noi.</p>
+
+            <!-- Modulo interattivo base -->
+            <form onsubmit="event.preventDefault(); alert('Grazie! I dati sono pronti per essere inviati. Ti consigliamo di contattarci direttamente via WhatsApp/SMS o Email per una risposta immediata.');" style="display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: var(--primary-color);">Modello iPhone (es. iPhone 13, 14 Pro...)</label>
+                    <input type="text" placeholder="Es. iPhone 12 128GB" required style="width: 100%; padding: 12px; border: 1px solid var(--gray-light); border-radius: 8px; font-size: 1rem;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label style="display: block; font-weight: 500; margin-bottom: 8px; color: var(--primary-color);">Stato della Batteria (%)</label>
+                        <input type="number" placeholder="Es. 88" style="width: 100%; padding: 12px; border: 1px solid var(--gray-light); border-radius: 8px; font-size: 1rem;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 500; margin-bottom: 8px; color: var(--primary-color);">Condizioni Estetiche</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid var(--gray-light); border-radius: 8px; font-size: 1rem; background: #fff;">
+                            <option>Pari al nuovo (perfetto)</option>
+                            <option>Ottime (qualche lievissimo segno)</option>
+                            <option>Buone (segni di usura visibili)</option>
+                            <option>Da riparare / Schermo rotto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label style="display: block; font-weight: 500; margin-bottom: 8px; color: var(--primary-color);">Il tuo Recapito (Telefono o Email)</label>
+                    <input type="text" placeholder="Il tuo numero o email per essere ricontattato" required style="width: 100%; padding: 12px; border: 1px solid var(--gray-light); border-radius: 8px; font-size: 1rem;">
+                </div>
+
+                <button type="submit" class="btn-register" style="padding: 14px; border: none; cursor: pointer; font-size: 1rem; font-weight: 600; border-radius: 8px; margin-top: 10px;">Genera Richiesta</button>
+            </form>
+
+            <!-- Contatti rapidi dedicati -->
+            <div style="margin-top: 40px; border-top: 1px solid var(--gray-light); padding-top: 30px; text-align: center;">
+                <h4 style="margin-bottom: 15px; color: var(--primary-color); font-size: 1.1rem;">Oppure contattaci subito per una valutazione lampo:</h4>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="sms:+393716237543?body=Ciao!%20Vorrei%20vendere%20il%20mio%20iPhone" class="btn-main" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;"><i class="fas fa-comment-sms"></i> Invia SMS</a>
+                    <a href="tel:+393716237543" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;"><i class="fas fa-phone"></i> Chiama Subito</a>
+                    <a href="mailto:grazianococoseller@gmail.com?subject=Vendita%20iPhone%20Usato" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;"><i class="fas fa-envelope"></i> Invia Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTATTI -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Smartfix</h4>
+                <p>La tua soluzione di fiducia per la riparazione e rivendita di iPhone ad Acireale.</p>
+                <div class="contact-links">
+                    <a href="tel:+393716237543" title="Chiama ora"><i class="fas fa-phone"></i></a>
+                    <a href="sms:+393716237543" title="Invia SMS"><i class="fas fa-comment-sms"></i></a>
+                    <a href="mailto:grazianococoseller@gmail.com" title="Invia Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.vinted.it/member/262896039" target="_blank" title="Profilo Vinted"><i class="fas fa-store"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Link Rapidi</h4>
+                <a href="acquista.html">Acquista iPhone</a>
+                <a href="vendi.html">Vendi il tuo iPhone</a>
+                <a href="login.html">Area Utente</a>
+                <a href="https://www.vinted.it/member/262896039" target="_blank">Profilo Vinted Ufficiale</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti Diretti</h4>
+                <p><i class="fas fa-phone"></i> <a href="tel:+393716237543">+39 371 623 7543</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:grazianococoseller@gmail.com">grazianococoseller@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Acireale (CT), Italia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Smartfix di Graziano Coco. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

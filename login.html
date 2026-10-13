@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accedi - Smartfix</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Esterno -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 140px auto 60px auto;
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            background: #fff;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-social:hover {
+            background: #f5f5f5;
+            border-color: #ccc;
+        }
+
+        .btn-social.phone-btn {
+            background: #e8f5e9;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .btn-social.phone-btn:hover {
+            background: #d4edda;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        .fast-reply-badge {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .auth-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .auth-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="home.html" class="logo-container">
+            <h1>SMARTFIX</h1>
+        </a>
+        <nav>
+            <a href="acquista.html">Acquista</a>
+            <a href="home.html#chisiamo">Chi siamo</a>
+            <a href="home.html#recensioni">Recensioni</a>
+            <a href="home.html#aiuto">Aiuto</a>
+            <a href="vendi.html">Vendi il tuo iPhone</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn-login">Accedi</a>
+            <a href="register.html" class="btn-register">Registrati</a>
+        </div>
+    </header>
+
+    <!-- BOX LOGIN -->
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Bentornato!</h2>
+            <p>Accedi al tuo account Smartfix</p>
+        </div>
+
+        <!-- Avviso Risposta Rapida via Telefono -->
+        <div class="fast-reply-badge">
+            <i class="fas fa-bolt" style="color: #f39c12; font-size: 1.1rem;"></i>
+            <span><strong>Consiglio:</strong> L'accesso con Numero di Telefono o WhatsApp permette risposte molto più veloci rispetto all'email!</span>
+        </div>
+
+        <!-- ACCESSO SOCIAL / RAPIDO -->
+        <div class="social-login">
+            <button class="btn-social phone-btn" onclick="alert('Puoi contattarci o accedere inserendo il tuo numero di telefono per comunicazioni immediate.');">
+                <i class="fas fa-phone-alt"></i> Accedi con Numero di Telefono
+            </button>
+            <button class="btn-social" onclick="alert('Accesso tramite Google simulato.');">
+                <i class="fab fa-google" style="color: #db4437;"></i> Continua con Google
+            </button>
+            <button class="btn-social" onclick="alert('Accesso tramite Apple simulato.');">
+                <i class="fab fa-apple" style="color: #000;"></i> Continua con Apple
+            </button>
+        </div>
+
+        <div class="divider">
+            <span>oppure via Email</span>
+        </div>
+
+        <!-- FORM ACCESSO EMAIL -->
+        <form class="auth-form" onsubmit="event.preventDefault(); alert('Accesso effettuato con successo!'); window.location.href='home.html';">
+            <div class="form-group">
+                <label>Email o Numero di Telefono</label>
+                <input type="text" placeholder="inserisci la tua email o telefono" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-main" style="width: 100%; border: none; cursor: pointer; padding: 12px; font-size: 1rem;">Accedi</button>
+        </form>
+
+        <div class="auth-footer">
+            Non hai ancora un account? <a href="register.html">Registrati qui</a>
+        </div>
+    </div>
+
+    <!-- FOOTER & CONTATTI -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Smartfix</h4>
+                <p>La tua soluzione di fiducia per la riparazione e rivendita di iPhone ad Acireale.</p>
+                <div class="contact-links">
+                    <a href="tel:+393716237543" title="Chiama ora"><i class="fas fa-phone"></i></a>
+                    <a href="sms:+393716237543" title="Invia SMS"><i class="fas fa-comment-sms"></i></a>
+                    <a href="mailto:grazianococoseller@gmail.com" title="Invia Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.vinted.it/member/262896039" target="_blank" title="Profilo Vinted"><i class="fas fa-store"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Link Rapidi</h4>
+                <a href="acquista.html">Acquista iPhone</a>
+                <a href="vendi.html">Vendi il tuo iPhone</a>
+                <a href="login.html">Area Utente</a>
+                <a href="https://www.vinted.it/member/262896039" target="_blank">Profilo Vinted Ufficiale</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti Diretti</h4>
+                <p><i class="fas fa-phone"></i> <a href="tel:+393716237543">+39 371 623 7543</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:grazianococoseller@gmail.com">grazianococoseller@gmail.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Acireale (CT), Italia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Smartfix di Graziano Coco. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
